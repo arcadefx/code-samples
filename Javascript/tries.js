@@ -10,7 +10,7 @@ class Tries {
         this.root = new Node();
     }
 
-    add(word, node=this.root) {
+    add(word, node = this.root) {
         if (word.length === 0) {
             node.end = true;
             return;
@@ -21,7 +21,7 @@ class Tries {
         return this.add(word.slice(1), node.keys.get(word[0]));
     }
 
-    search(word, node=this.root, string='') {
+    search(word, node = this.root, string = '') {
         if (word.length) {
             if (!node.keys.has(word[0])) {
                 return undefined;
@@ -33,8 +33,8 @@ class Tries {
         }
     }
 
-    getAllWords(node=this.root, string='', words=[]) {
-        for(let letter of node.keys.keys()) {
+    getAllWords(node = this.root, string = '', words = []) {
+        for (let letter of node.keys.keys()) {
             this.getAllWords(node.keys.get(letter), string.concat(letter), words);
         }
         if (node.end) {

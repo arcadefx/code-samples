@@ -2,13 +2,13 @@ class Node {
     constructor(data) {
         this.data = data;
         this.next = null;
-        this.tail = null;
     }
 }
 
 class LinkedList {
     constructor() {
         this.root = null;
+        this.tail = null;
     }
 
     add(newNode) {
@@ -24,7 +24,7 @@ class LinkedList {
 
     printInOrder() {
         let node = this.root;
-        while(node !== null) {
+        while (node !== null) {
             console.log(node.data);
             node = node.next;
         }
@@ -32,7 +32,7 @@ class LinkedList {
 }
 
 const linklist = new LinkedList();
-const input = [ 10, 50, 30 ];
+const input = [10, 50, 30];
 
 input.forEach((num) => {
     linklist.add(new Node(num));
