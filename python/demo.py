@@ -4,7 +4,7 @@ class Demo:
   elements = []
   
   def __init__(self):
-    print "init launch"
+    print("init launch")
 
   def greet(self):
     return "nothing special"
@@ -16,20 +16,20 @@ class Demo:
     return a+b
 
   def countTo(self,maxNum):
-    for x in xrange(1,maxNum):  # range() creats all numbers used or not, xrange() create as needed
-      print "val = %d" % x
+    for x in range(1,maxNum):  # range() in Python 3 is efficient like xrange() was in Python 2
+      print("val = %d" % x)
 
   def printArray(self,data):
     for x in data:
-      print x
+      print(x)
       if x == "stop":
         break
       elif x == "laugh":
-        print "HAHAHA"
+        print("HAHAHA")
     self.tellSecret()
 
   def tellSecret(self):
-     print "secret number is %r\naccess code %d" % (self.__privNumber, int(self.__privCode))
+     print("secret number is %r\naccess code %d" % (self.__privNumber, int(self.__privCode)))
 
   def splitBasket(self,basket):
      return basket.split(',')
@@ -38,4 +38,4 @@ class Demo:
      self.elements.append('apple')
      self.elements.append('pie')
      for entry in self.elements:
-       print "element %s" %entry
+       print("element %s" %entry)
