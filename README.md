@@ -4,7 +4,7 @@
 
 ## 📚 Overview
 
-This repository contains practical implementations of common algorithms, data structures, and programming concepts. Perfect for reference, learning, or interview preparation.
+This repository contains practical implementations of common algorithms, data structures, and programming concepts.
 
 ## 🗂️ Languages & Projects
 
