@@ -2,6 +2,9 @@ const express = require('express'); // Import the express module
 const app = express();              // Initialize the app
 const port = 3000;                  // Define a port
 
+// middleware check
+app.use(checkPerm);
+
 // Define a "route" - what happens when someone visits the home page
 app.get('/', (req, res) => {
     res.send('Hello from Express!');
@@ -28,10 +31,25 @@ app.get('/quote-resolve', async (req, res) => {
     });
 });
 
+// handle any errors that occurred
+app.use(errorHandler);
+
 // Start the server and listen for requests
 app.listen(port, () => {
     console.log(`Server is running at http://localhost:${port}`);
 });
+
+function checkPerm(req, res, next) {
+    next();
+    // commented out, but shows how to trigger the error handler below
+    // const authErr = new Error('unauthorized');
+    // next(authErr);
+}
+
+function errorHandler(err, req, res, next) {
+    console.error('Error:', err.message);
+    res.status(500).json({ error: 'Internal Server Error' });
+}
 
 
 async function wacky() {
