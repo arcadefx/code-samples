@@ -2,6 +2,7 @@ const express = require('express'); // Import the express module
 const app = express();              // Initialize the app
 const port = 3000;                  // Define a port
 
+// middleware check
 app.use(checkPerm);
 
 // Define a "route" - what happens when someone visits the home page
@@ -30,6 +31,7 @@ app.get('/quote-resolve', async (req, res) => {
     });
 });
 
+// handle any errors that occurred
 app.use(errorHandler);
 
 // Start the server and listen for requests
@@ -40,8 +42,8 @@ app.listen(port, () => {
 function checkPerm(req, res, next) {
     next();
     // commented out, but shows how to trigger the error handler below
-    // const oops = new Error('oops');
-    // next(oops);
+    // const authErr = new Error('unauthorized');
+    // next(authErr);
 }
 
 function errorHandler(err, req, res, next) {
