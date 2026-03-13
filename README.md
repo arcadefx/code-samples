@@ -29,6 +29,13 @@ Algorithm implementations including:
 - Sorting algorithms
 - LeetCode-style problems
 
+### **Node.js**
+A simple Express.js server with routes demonstrating async patterns:
+- `GET /` – Basic hello message
+- `GET /wacky` – Random funny phrase with simulated async delay
+- `GET /quote` – Fetches a random quote from zenquotes.io (async/await)
+- `GET /quote-resolve` – Same as above using promise chaining
+
 ### **PHP**
 Utility functions: Fibonacci, Hamming weight, array intersections.
 

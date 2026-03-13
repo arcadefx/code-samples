@@ -1,0 +1,22 @@
+{
+  "name": "nodejs1",
+  "version": "1.0.0",
+  "description": "testing things out",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js",
+    "start:dev": "nodemon index.js"
+  },
+  "keywords": [
+    "testing"
+  ],
+  "author": "Paul Cardwell",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^5.2.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.14"
+  }
+}
