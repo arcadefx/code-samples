@@ -1,0 +1,46 @@
+<div class="weather-container">
+  <h1>{{ isLoading() ? 'Loading' : (weatherData()?.city || 'Local') }} Weather Information</h1>
+  
+  @if (isLoading()) {
+    <div class="spinner-container">
+      <mat-spinner diameter="90"></mat-spinner>
+    </div>
+  }
+  
+  @if (!isLoading() && weatherData()) {
+    <div class="weather-content">
+      <div class="animation-section">
+        <div #lottieContainer class="lottie-animation"></div>
+      </div>
+      
+      <div class="weather-details">
+        <mat-card>
+          <mat-card-header>
+            <mat-card-title>Current Conditions</mat-card-title>
+          </mat-card-header>
+          <mat-card-content>
+            <div class="details-grid">
+              <div class="detail-item">
+                <span class="label">Temperature</span>
+                <span class="value">{{ weatherData()?.temperature }}°F</span>
+              </div>
+              <div class="detail-item">
+                <span class="label">Condition</span>
+                <span class="value">{{ weatherData()?.condition }}</span>
+              </div>
+              <div class="detail-item">
+                <span class="label">Wind</span>
+                <span class="value">{{ weatherData()?.wind }} mph</span>
+              </div>
+              <div class="detail-item">
+                <span class="label">Humidity</span>
+                <span class="value">{{ weatherData()?.humidity }}%</span>
+              </div>
+            </div>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </div>
+  }
+</div>
+
