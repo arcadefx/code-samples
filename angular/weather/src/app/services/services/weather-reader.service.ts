@@ -21,9 +21,10 @@ export class WeatherReaderService {
         console.log('Weather API response:', weather);
         const weatherCode = (weather as any).current.weather_code;
         const animationPath = this.getWeatherAnimation(weatherCode);
+        const conditionKey = WeatherCode[weatherCode];
         return {
           temperature: (weather as any).current.temperature_2m,
-          condition: this.formatWeatherCondition(WeatherCode[weatherCode]),
+          condition: this.formatWeatherCondition(conditionKey),
           humidity: (weather as any).current.relative_humidity_2m,
           wind: (weather as any).current.wind_speed_10m,
           windDirection: this.formatWindDirection((weather as any).current.wind_direction_10m),
