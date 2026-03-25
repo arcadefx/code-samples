@@ -4,7 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { Coords } from '../../models/coords.model';
 import { WeatherCode } from '../../models/open-meteo.model';
 import { WeatherBasic } from '../../models/weather-basic.model';
-import { weatherAnimations } from '../../models/weather-animations.model';
+import { WeatherAnimations } from '../../models/weather-animations.model';
 
 @Injectable({
   providedIn: 'root'
@@ -58,13 +58,13 @@ export class WeatherReaderService {
     return this.http.get(`https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${lat}&lon=${lon}`).pipe(
       map((data: any) => {
         console.log('Reverse geocoding response:', data);
-        return data.address.city || 
-               data.address.town || 
-               data.address.village || 
-               data.address.suburb ||
-               data.address.municipality ||
-               data.address.county ||
-               'Unknown location';
+        return data.address.city ||
+          data.address.town ||
+          data.address.village ||
+          data.address.suburb ||
+          data.address.municipality ||
+          data.address.county ||
+          'Unknown location';
       })
     );
   }
@@ -73,14 +73,14 @@ export class WeatherReaderService {
     switch (weatherCode) {
       case WeatherCode.ClearSky:
       case WeatherCode.MainlyClear:
-        return weatherAnimations['clear-day'];
+        return WeatherAnimations['clear-day'];
       case WeatherCode.PartlyCloudy:
-        return weatherAnimations['partly-cloudy-day'];
+        return WeatherAnimations['partly-cloudy-day'];
       case WeatherCode.Overcast:
-        return weatherAnimations['cloudy'];
+        return WeatherAnimations['cloudy'];
       case WeatherCode.Fog:
       case WeatherCode.DepositingRimeFog:
-        return weatherAnimations['fog'];
+        return WeatherAnimations['fog'];
       case WeatherCode.DrizzleLight:
       case WeatherCode.DrizzleModerate:
       case WeatherCode.DrizzleDense:
@@ -91,17 +91,17 @@ export class WeatherReaderService {
       case WeatherCode.RainHeavy:
       case WeatherCode.FreezingRainLight:
       case WeatherCode.FreezingRainHeavy:
-        return weatherAnimations['rain'];
+        return WeatherAnimations['rain'];
       case WeatherCode.SnowFallSlight:
       case WeatherCode.SnowFallModerate:
       case WeatherCode.SnowFallHeavy:
-        return weatherAnimations['snow'];
+        return WeatherAnimations['snow'];
       case WeatherCode.Thunderstorm:
       case WeatherCode.ThunderstormHeavyHail:
       case WeatherCode.ThunderstormSlightHail:
-        return weatherAnimations['thunderstorm'];
+        return WeatherAnimations['thunderstorm'];
       default:
-        return weatherAnimations['clear-day']; // Default animation for unhandled weather codes, can be improved to cover more cases
+        return WeatherAnimations['clear-day']; // Default animation for unhandled weather codes, can be improved to cover more cases
     }
   }
 

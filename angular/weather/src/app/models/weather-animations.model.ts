@@ -1,4 +1,4 @@
-export const weatherAnimations = {
+export const WeatherAnimations = {
   'clear-day': '/assets/weather-sunny.json',
   'clear-night': '/assets/weather-sunny.json',
   'partly-cloudy-day': '/assets/weather-partly-cloudy-day.json',
