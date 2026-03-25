@@ -2,28 +2,27 @@ import { Component, ElementRef, ViewChild, OnInit, OnDestroy, inject, signal } f
 import lottie, { AnimationItem } from 'lottie-web';
 import { WeatherReaderService } from '../../services/services/weather-reader.service';
 import { WeatherBasic } from '../../models/weather-basic.model';
-import { Subject, takeUntil } from 'rxjs';
+import { Subject } from 'rxjs';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatCardModule } from '@angular/material/card';
 import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-weatherbasic',
-  imports: [ MatProgressSpinnerModule, MatCardModule, CommonModule ],
+  imports: [MatProgressSpinnerModule, MatCardModule, CommonModule],
   templateUrl: './weatherbasic.component.html',
   styleUrl: './weatherbasic.component.scss'
 })
 export class WeatherbasicComponent implements OnInit, OnDestroy {
-@ViewChild('lottieContainer', { static: false }) lottieContainer!: ElementRef;
+  @ViewChild('lottieContainer', { static: false }) lottieContainer!: ElementRef;
   isLoading = signal(true);
   weatherData = signal<WeatherBasic | null>(null);
 
   private anim?: AnimationItem;
   private weatherService = inject(WeatherReaderService);
-  private destroy$ = new Subject<void>();
-  
+
   ngOnInit() {
-    this.weatherService.getLocalCoordinates().pipe(takeUntil(this.destroy$)).subscribe({
+    this.weatherService.getLocalCoordinates().subscribe({
       next: (coords) => {
         console.log('User coordinates:', coords);
         this.getCurrentWeather(coords.latitude, coords.longitude);
@@ -36,18 +35,16 @@ export class WeatherbasicComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.destroy$.next();
-    this.destroy$.complete();
     if (this.anim) {
       this.anim.destroy();
     }
   }
 
   getCurrentWeather(lat: number, lon: number) {
-    this.weatherService.getCurrentWeather(lat, lon).pipe(takeUntil(this.destroy$)).subscribe(weatherData => {
+    this.weatherService.getCurrentWeather(lat, lon).subscribe(weatherData => {
       this.weatherData.set(weatherData);
       this.isLoading.set(false);
-      
+
       // Wait for the view to update before loading animation
       setTimeout(() => {
         if (this.lottieContainer) {
