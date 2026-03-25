@@ -102,7 +102,7 @@ Neither service is configured through environment files in this project at the m
 
 This project is set up to run unit tests with Jest.
 
-Current test coverage is minimal and mostly checks component and service creation. If you expand the app, useful next tests would cover:
+Current test coverage is minimal and mostly checks component and service creation. Useful next tests would cover:
 
 - geolocation success and failure paths
 - API response mapping to `WeatherBasic`
