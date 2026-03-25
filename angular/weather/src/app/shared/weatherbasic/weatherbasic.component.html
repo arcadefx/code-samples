@@ -1,6 +1,7 @@
 <div class="weather-container">
-  <h1>{{ isLoading() ? 'Loading' : (weatherData()?.city || 'Local') }} Weather Information</h1>
-  
+  <h1>{{ isLoading() ? 'Loading' : 'Local' }} Weather Information</h1>
+  <h3>{{ weatherData()?.city }}</h3>
+
   @if (isLoading()) {
     <div class="spinner-container">
       <mat-spinner diameter="90"></mat-spinner>
