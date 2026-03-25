@@ -3,6 +3,7 @@ export interface WeatherBasic {
   condition: string;
   humidity: number;
   wind: number;
+  windDirection?: string;
   city: string;
   animationPath: string;
 }

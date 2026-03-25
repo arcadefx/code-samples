@@ -14,7 +14,7 @@ export class WeatherReaderService {
 
   getCurrentWeather(lat: number, lon: number): Observable<WeatherBasic> {
     return forkJoin({
-      weather: this.http.get(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=temperature_2m,weather_code,relative_humidity_2m,wind_speed_10m&temperature_unit=fahrenheit&wind_speed_unit=mph&timezone=auto`),
+      weather: this.http.get(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=temperature_2m,weather_code,relative_humidity_2m,wind_speed_10m,wind_direction_10m&temperature_unit=fahrenheit&wind_speed_unit=mph&timezone=auto`),
       city: this.getCityName(lat, lon)
     }).pipe(
       map(({ weather, city }) => {
@@ -23,9 +23,10 @@ export class WeatherReaderService {
         const animationPath = this.getWeatherAnimation(weatherCode);
         return {
           temperature: (weather as any).current.temperature_2m,
-          condition: WeatherCode[weatherCode],
+          condition: this.formatWeatherCondition(WeatherCode[weatherCode]),
           humidity: (weather as any).current.relative_humidity_2m,
           wind: (weather as any).current.wind_speed_10m,
+          windDirection: this.formatWindDirection((weather as any).current.wind_direction_10m),
           city: city,
           animationPath
         };
@@ -105,4 +106,23 @@ export class WeatherReaderService {
     }
   }
 
+  private formatWeatherCondition(conditionKey: string | undefined): string {
+    if (!conditionKey) {
+      return 'Unknown';
+    }
+
+    return conditionKey.replace(/([a-z])([A-Z])/g, '$1 $2');
+  }
+
+  private formatWindDirection(degrees: number | undefined): string {
+    if (degrees === undefined || degrees === null || Number.isNaN(degrees)) {
+      return 'Unknown';
+    }
+
+    const normalized = ((degrees % 360) + 360) % 360;
+    const directions = ['N', 'NE', 'E', 'SE', 'S', 'SW', 'W', 'NW'];
+    const index = Math.round(normalized / 45) % directions.length;
+
+    return `${directions[index]}`;
+  }
 }
