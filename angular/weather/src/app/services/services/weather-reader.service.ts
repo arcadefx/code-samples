@@ -21,9 +21,10 @@ export class WeatherReaderService {
         console.log('Weather API response:', weather);
         const weatherCode = (weather as any).current.weather_code;
         const animationPath = this.getWeatherAnimation(weatherCode);
+        const conditionKey = WeatherCode[weatherCode];
         return {
           temperature: (weather as any).current.temperature_2m,
-          condition: WeatherCode[weatherCode],
+          condition: this.formatWeatherCondition(conditionKey),
           humidity: (weather as any).current.relative_humidity_2m,
           wind: (weather as any).current.wind_speed_10m,
           city: city,
@@ -103,6 +104,14 @@ export class WeatherReaderService {
       default:
         return WeatherAnimations['clear-day']; // Default animation for unhandled weather codes, can be improved to cover more cases
     }
+  }
+
+  private formatWeatherCondition(conditionKey: string | undefined): string {
+    if (!conditionKey) {
+      return 'Unknown';
+    }
+
+    return conditionKey.replace(/([a-z])([A-Z])/g, '$1 $2');
   }
 
 }
