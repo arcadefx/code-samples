@@ -8,6 +8,13 @@ This repository contains practical implementations of common algorithms, data st
 
 ## 🗂️ Languages & Projects
 
+### **Angular**
+Modern frontend app example:
+- Weather app using browser geolocation
+- Open-Meteo + Nominatim integration
+- Animated weather states with Lottie
+- Angular Material UI and Jest tests
+
 ### **C** 
 Core data structures including B-trees, linked lists, and string utilities with custom implementations.
 
