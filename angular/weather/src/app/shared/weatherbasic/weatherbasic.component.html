@@ -2,6 +2,10 @@
   <h1>{{ isLoading() ? 'Loading' : 'Local' }} Weather Information</h1>
   <h3>{{ weatherData()?.city }}</h3>
 
+  @if (errorMessage()) {
+    <p class="error-message">{{ errorMessage() }}</p>
+  }
+
   @if (isLoading()) {
     <div class="spinner-container">
       <mat-spinner diameter="90"></mat-spinner>
