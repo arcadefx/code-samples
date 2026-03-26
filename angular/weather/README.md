@@ -6,8 +6,9 @@ An Angular weather app that uses your browser location to load current local wea
 
 - Uses browser geolocation to detect the current latitude and longitude
 - Fetches current weather data from Open-Meteo
+- Automatically refreshes weather data every 5 minutes using an RxJS timer
 - Resolves the current city or local area using OpenStreetMap Nominatim reverse geocoding
-- Displays temperature, condition, wind speed, and humidity
+- Displays temperature, condition, wind speed, wind direction, and humidity
 - Maps weather codes to animated weather scenes stored in `public/assets`
 - Built with Angular standalone components and Angular Material
 
@@ -23,10 +24,11 @@ An Angular weather app that uses your browser location to load current local wea
 ## How It Works
 
 1. The app redirects `/` to `/home`.
-2. The weather component asks the browser for geolocation access.
-3. The app requests current weather data from Open-Meteo.
-4. The app requests a city or locality name from Nominatim.
-5. The UI renders the weather details and loads a matching animation.
+2. The weather component starts an RxJS timer that runs immediately and then every 5 minutes.
+3. On each timer tick, the component asks the browser for geolocation access.
+4. The app requests current weather data from Open-Meteo.
+5. The app requests a city or locality name from Nominatim.
+6. The UI renders the weather details and loads a matching animation.
 
 ## Prerequisites
 
@@ -78,7 +80,7 @@ src/
 		app.config.ts                 Application bootstrap providers
 		app.routes.ts                 Route configuration
 		models/                       Shared data and mapping models
-		services/services/            Weather and geolocation data access
+		services/                     Weather and geolocation data access
 		shared/weatherbasic/          Main weather UI component
 public/assets/                   Lottie weather animation files
 ```
