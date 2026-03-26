@@ -1,10 +1,10 @@
 import { Injectable, inject } from '@angular/core';
 import { Observable, forkJoin, map } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-import { Coords } from '../../models/coords.model';
-import { WeatherCode } from '../../models/open-meteo.model';
-import { WeatherBasic } from '../../models/weather-basic.model';
-import { WeatherAnimations } from '../../models/weather-animations.model';
+import { Coords } from '../models/coords.model';
+import { WeatherCode } from '../models/open-meteo.model';
+import { WeatherBasic } from '../models/weather-basic.model';
+import { WeatherAnimations } from '../models/weather-animations.model';
 
 @Injectable({
   providedIn: 'root'
