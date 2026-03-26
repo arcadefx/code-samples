@@ -1,6 +1,6 @@
 import { Component, ElementRef, ViewChild, OnInit, OnDestroy, inject, signal } from '@angular/core';
 import lottie, { AnimationItem } from 'lottie-web';
-import { WeatherReaderService } from '../../services/services/weather-reader.service';
+import { WeatherReaderService } from '../../services/weather-reader.service';
 import { WeatherBasic } from '../../models/weather-basic.model';
 import { Subject, timer, switchMap, takeUntil, tap } from 'rxjs';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
