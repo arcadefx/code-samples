@@ -5,11 +5,11 @@ import { WeatherBasic } from '../../models/weather-basic.model';
 import { Subject, timer, switchMap, takeUntil, tap } from 'rxjs';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatCardModule } from '@angular/material/card';
-import { CommonModule } from '@angular/common';
+
 
 @Component({
   selector: 'app-weatherbasic',
-  imports: [MatProgressSpinnerModule, MatCardModule, CommonModule],
+  imports: [MatProgressSpinnerModule, MatCardModule],
   templateUrl: './weatherbasic.component.html',
   styleUrl: './weatherbasic.component.scss'
 })

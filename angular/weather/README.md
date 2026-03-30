@@ -14,7 +14,7 @@ An Angular weather app that uses your browser location to load current local wea
 
 ## Tech Stack
 
-- Angular 19
+- Angular 21
 - TypeScript
 - Angular Material
 - RxJS
@@ -32,7 +32,7 @@ An Angular weather app that uses your browser location to load current local wea
 
 ## Prerequisites
 
-- Node.js 18+ recommended
+- Node.js 20+ recommended
 - npm
 - A browser with geolocation enabled
 
