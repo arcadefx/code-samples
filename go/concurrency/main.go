@@ -6,6 +6,8 @@ import (
 	"time"
 )
 
+func hello() {}
+
 func main() {
 	const apiCallsTodo = 10
 	const maxWorkers = 2
